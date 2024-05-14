@@ -6,9 +6,7 @@ def card_mask(number_card: int) -> str:
     if len(str(number_card)) == 16:
         number_card_str = str(number_card)
         number_card_str = number_card_str.replace(" ", "")
-        masked_number = (f"{number_card_str[:4]} "
-                         f"{number_card_str[4:6]}** **** "
-                         f"{number_card_str[-4:]}")
+        masked_number = f"{number_card_str[:4]} {number_card_str[4:6]}** **** {number_card_str[-4:]}"
         return masked_number
     else:
         return "Некорректный номер карты"
