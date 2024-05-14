@@ -19,7 +19,7 @@ def mask_card_or_account(user_data: str) -> str:
 def format_date(date_str: str) -> str:
     """Ф-ция, которая принимает на вход строку вида
     2018-07-11T02:26:18.671407
-    и возвращает строку с датой в виде
+    и возвращает строку с датой в виде:
     11.07.2018."""
     year = date_str[:4]
     month = date_str[5:7]
