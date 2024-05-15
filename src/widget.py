@@ -1,19 +1,13 @@
-def mask_card_or_account(user_data: str) -> str:
-    """Ф-ция принимает на вход строку с информацией
-    — тип карты/счета и номер карты/счета.
-    и возвращает исходную строку с
-    замаскированным номером карты/счета."""
+from src.masks import card_mask, number_account_mask
 
-    divide = user_data.split(" ", 1)
-    card_type = divide[0]
-    card_number = divide[1]
 
-    if card_type.lower() == "счет":
-        masked_number = f"**{card_number[-4:]}"
+def mask_card_or_account(input_str: str) -> str:
+    """Функция  принимает на вход строку нужного формата
+    или для маскировки не используются функции из модуля masks"""
+    if "Счет" in input_str:
+        return f"Счет {number_account_mask(input_str.split()[-1])}"
     else:
-        masked_number = f"{card_number[:6]}** **{card_number[-4:]}"
-
-    return f"{card_type} {masked_number}"
+        return " ".join(input_str.split()[:-1]) + " " + card_mask(input_str.split()[-1])
 
 
 def format_date(date_str: str) -> str:
@@ -29,4 +23,4 @@ def format_date(date_str: str) -> str:
     return formatted_date
 
 
-print(format_date("2024-05-14T02:26:18.671407"))
+print(mask_card_or_account("Visa Platinum 8990922113665229"))
