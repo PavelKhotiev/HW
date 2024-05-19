@@ -9,15 +9,11 @@ def filter_by_state(data: list, state: str = "EXECUTED") -> list:
     return filtered_data
 
 
-def sort_by_date(data: list, descending: bool = True) -> list:
+def sort_by_date(list_dict: list, direction: bool = True) -> list:
     """принимает на вход список словарей и возвращает новый список, в котором
     исходные словари отсортированы по убыванию даты"""
 
-    def get_date(item: dict) -> str:
-        return item["date"]
-
-    sorted_data = sorted(data, key=get_date, reverse=descending)
-    return sorted_data
+    sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=direction)
+    return sorted_list
 
 
-# P.S. mypy выдаёт ошибку - не могу исправить, не понимаю что ему не нравится
