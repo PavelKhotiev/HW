@@ -15,5 +15,3 @@ def sort_by_date(list_dict: list, direction: bool = True) -> list:
 
     sorted_list = sorted(list_dict, key=lambda x: x["date"], reverse=direction)
     return sorted_list
-
-
