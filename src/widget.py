@@ -21,6 +21,3 @@ def format_date(date_str: str) -> str:
 
     formatted_date = f"{day}.{month}.{year}"
     return formatted_date
-
-
-print(mask_card_or_account("Visa Platinum 8990922113665229"))
