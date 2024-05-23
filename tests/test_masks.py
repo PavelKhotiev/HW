@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 import pytest
+
 from src.masks import card_mask, number_account_mask
 
 
@@ -55,3 +56,6 @@ def test_number_account_mask(account_data: List[Tuple[str, str]], number_account
 )
 def test_invalid_number_account_mask(invalid_account_data: List[str], number_account: str) -> None:
     assert number_account_mask(number_account) == "**" + number_account[-4:]
+
+
+
