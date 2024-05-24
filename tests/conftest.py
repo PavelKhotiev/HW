@@ -3,6 +3,7 @@ from typing import List, Tuple
 import pytest
 
 
+# фикстуры для tests_masks
 @pytest.fixture
 def valid_card_data() -> List[Tuple[str, str]]:
     return [
@@ -41,4 +42,35 @@ def invalid_account_data() -> List[Tuple[str, str]]:
         ("abcd", "**abcd"),
         ("12", "**12"),
         ("", "**"),
+    ]
+
+
+# Фикстуры для test_widget
+
+
+@pytest.fixture
+def valid_card_data_set() -> List[Tuple[str, str]]:
+    return [
+        ("Visa Classic 1234567812345678", "Visa Classic 1234 56** **** 5678"),
+        ("MasterCard 1234567812345678", "MasterCard 1234 56** **** 5678"),
+        ("Visa 0000000000000000", "Visa 0000 00** **** 0000"),
+        ("MasterCard 1111222233334444", "MasterCard 1111 22** **** 4444"),
+    ]
+
+
+@pytest.fixture
+def valid_account_data_set() -> List[Tuple[str, str]]:
+    return [
+        ("Счет 1234567890123456", "Счет **3456"),
+        ("Счет 9876543210987654", "Счет **7654"),
+        ("Счет 0000000000000000", "Счет **0000"),
+    ]
+
+
+@pytest.fixture
+def invalid_data_set() -> List[Tuple[str, str]]:
+    return [
+        ("Visa Classic 12345678", "Неверный номер карты"),
+        ("MasterCard 1234 5678 1234", "Неверный номер карты"),
+        ("Счет 123", "Счет **123"),
     ]
