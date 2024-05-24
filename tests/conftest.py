@@ -74,3 +74,16 @@ def invalid_data_set() -> List[Tuple[str, str]]:
         ("MasterCard 1234 5678 1234", "Неверный номер карты"),
         ("Счет 123", "Счет **123"),
     ]
+
+
+# Фикстуры для processing
+
+
+@pytest.fixture
+def sample_data():
+    return [
+        {"id": 1, "state": "EXECUTED"},
+        {"id": 2, "state": "PENDING"},
+        {"id": 3, "state": "EXECUTED"},
+        {"id": 4, "state": "FAILED"},
+    ]
