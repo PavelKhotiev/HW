@@ -22,3 +22,23 @@ def invalid_card_data() -> List[Tuple[str, str]]:
         ("1234 5678 1234 56789", "Неверный номер карты"),
         ("", "Неверный номер карты"),
     ]
+
+
+@pytest.fixture
+def valid_account_data() -> List[Tuple[str, str]]:
+    return [
+        ("1234567890123456", "**3456"),
+        ("9876543210987654", "**7654"),
+        ("0000000000000000", "**0000"),
+        ("1111222233334444", "**4444"),
+    ]
+
+
+@pytest.fixture
+def invalid_account_data() -> List[Tuple[str, str]]:
+    return [
+        ("123", "**123"),
+        ("abcd", "**abcd"),
+        ("12", "**12"),
+        ("", "**"),
+    ]

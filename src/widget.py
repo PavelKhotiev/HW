@@ -26,6 +26,3 @@ def format_date(date_str: str) -> str:
 
     formatted_date = f"{day}.{month}.{year}"
     return formatted_date
-
-
-
