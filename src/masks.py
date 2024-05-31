@@ -3,9 +3,11 @@ def card_mask(number_card: str) -> str:
     Номер карты замаскирован и отображается в формате XXXX XX** **** XXXX.
     Т. е. видны первые 6 цифр и последние 4,
     номер разбит по блокам по 4 цифры, разделенным пробелами."""
-    number_card_str = str(number_card)
-    number_card_str = number_card_str.replace(" ", "")
-    masked_number = f"{number_card_str[:4]} {number_card_str[4:6]}** **** {number_card_str[-4:]}"
+    number_card_str = number_card.replace(" ", "")
+    if len(number_card_str) == 16 and number_card_str.isdigit():
+        masked_number = f"{number_card_str[:4]} {number_card_str[4:6]}** **** {number_card_str[-4:]}"
+    else:
+        return "Неверный номер карты"
     return masked_number
 
 

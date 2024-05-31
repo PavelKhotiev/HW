@@ -3,11 +3,16 @@ from src.masks import card_mask, number_account_mask
 
 def mask_card_or_account(input_str: str) -> str:
     """Функция  принимает на вход строку нужного формата
-    или для маскировки не используются функции из модуля masks"""
+    или для маскировки и используются функции из модуля masks"""
     if "Счет" in input_str:
         return f"Счет {number_account_mask(input_str.split()[-1])}"
     else:
-        return " ".join(input_str.split()[:-1]) + " " + card_mask(input_str.split()[-1])
+        card_number = input_str.split()[-1]
+        masked_card = card_mask(card_number)
+        if masked_card == "Неверный номер карты":
+            return "Неверный номер карты"
+        else:
+            return " ".join(input_str.split()[:-1]) + " " + masked_card
 
 
 def format_date(date_str: str) -> str:
@@ -21,6 +26,3 @@ def format_date(date_str: str) -> str:
 
     formatted_date = f"{day}.{month}.{year}"
     return formatted_date
-
-
-print(mask_card_or_account("Visa Platinum 8990922113665229"))
