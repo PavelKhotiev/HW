@@ -11,3 +11,11 @@ def transaction_descriptions(transactions):
     описание каждой операции по очереди."""
     for transaction in transactions:
         yield transaction.get("description", "")
+
+
+def card_number_generator(start, end):
+    """генератор номеров банковских карт"""
+    for number in range(start, end + 1):
+        card_number = f"{number:016}"
+        formatted_card_number = f"{card_number[:4]} {card_number[4:8]} {card_number[8:12]} {card_number[12:]}"
+        yield formatted_card_number

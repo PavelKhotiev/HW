@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency_usd(sample_transactions):
@@ -58,3 +58,63 @@ def test_transaction_descriptions_missing_description(sample_transactions):
     assert next(descriptions) == "Перевод с карты на карту"
     assert next(descriptions) == "Перевод организации"
     assert next(descriptions) == ""
+
+
+def test_card_number_generator():
+    start = 1
+    end = 5
+    expected_output = [
+        "0000 0000 0000 0001",
+        "0000 0000 0000 0002",
+        "0000 0000 0000 0003",
+        "0000 0000 0000 0004",
+        "0000 0000 0000 0005",
+    ]
+
+    generated_output = list(card_number_generator(start, end))
+
+    assert generated_output == expected_output
+
+
+def test_card_number_generator_single_value():
+    start = 1234567890123456
+    end = 1234567890123456
+    expected_output = ["1234 5678 9012 3456"]
+
+    generated_output = list(card_number_generator(start, end))
+
+    assert generated_output == expected_output
+
+
+def test_card_number_generator_large_range():
+    start = 9999999999999995
+    end = 9999999999999999
+    expected_output = [
+        "9999 9999 9999 9995",
+        "9999 9999 9999 9996",
+        "9999 9999 9999 9997",
+        "9999 9999 9999 9998",
+        "9999 9999 9999 9999",
+    ]
+
+    generated_output = list(card_number_generator(start, end))
+
+    assert generated_output == expected_output
+
+
+def test_card_number_generator_empty_range():
+    start = 5
+    end = 1
+    generated_output = list(card_number_generator(start, end))
+
+    assert generated_output == []
+
+
+def test_card_number_generator_start_end_equal():
+    start = 1000000000000000
+    end = 1000000000000000
+    expected_output = ["1000 0000 0000 0000"]
+
+    generated_output = list(card_number_generator(start, end))
+
+    assert generated_output == expected_output
